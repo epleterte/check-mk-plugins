@@ -1,0 +1,17 @@
+#!/bin/bash
+# Very simple check of bind/named config
+# Christian Bryn 2017 <chr.bryn@gmail.com>
+
+status=3
+msg="Unknown zone config status"
+
+if (/usr/sbin/named-checkconf -z -t /var/named/chroot /etc/named.conf >/dev/null 2>&1);
+then
+  status=0
+  msg="OK - zone config is valid"
+else
+  status=2
+  msg="CRITICAL - zone config invalid!"
+fi
+
+echo "$status ZoneConfig - $msg"

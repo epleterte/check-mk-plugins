@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "<<<mounts>>>"
+grep fuse.glusterfs /proc/mounts
+echo "<<<df>>>"
+waitmax 20 df -PTi | grep fuse.glusterfs
